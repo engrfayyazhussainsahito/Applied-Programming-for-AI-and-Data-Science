@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MS Applied Programming (Python) | Graduate Learning Platform</title>
+  <meta name="description" content="Master's-level interactive learning platform for Applied Programming in Python. 15 Weeks, 30 Lessons, CPython internals, algorithms, concurrency, and 4-step engineering labs.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body data-root="" data-page-id="home">
+  <div class="progress" id="readingProgress"></div>
+
+  <div class="mobile-topbar">
+    <button class="btn btn-sm" id="openSidebar">☰ Menu</button>
+    <div class="brand-text">MS Applied Python</div>
+    <button class="theme-toggle-btn btn-sm">🌓</button>
+  </div>
+
+  <div class="site-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a class="brand" href="index.html">
+          <div class="brand-mark">Py</div>
+          <div>
+            <h1>Applied Python</h1>
+            <small>MS CS Graduate Portal</small>
+          </div>
+        </a>
+      </div>
+      <div class="nav-search">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="site-search-input" id="navSearch" placeholder="Search curriculum (Ctrl+K)...">
+          <span class="search-shortcut">⌘K</span>
+        </div>
+      </div>
+      <nav class="course-nav" id="courseNav"></nav>
+      <div class="sidebar-footer">
+        <button class="theme-toggle-btn" type="button">🌓 Theme</button>
+        <span style="font-size:0.75rem; color:var(--text-muted);">Python 3.13 Ready</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="page-wrap">
+        <header class="hero">
+          <div class="eyebrow">Graduate Computer Science · MS Level</div>
+          <h1>Applied Programming in Python</h1>
+          <p class="lead">A rigorous, systems-oriented Master's-level curriculum covering CPython runtime internals, asymptotic algorithms, OOP design patterns, asynchronous concurrency, and production software engineering practices.</p>
+
+          <div class="meta-grid">
+            <div class="meta-item">
+              <strong>Curriculum Scope</strong>
+              <span>15 Weeks · 30 Lessons</span>
+            </div>
+            <div class="meta-item">
+              <strong>Engineering Labs</strong>
+              <span>30 4-Step Practical Drills</span>
+            </div>
+            <div class="meta-item">
+              <strong>Interactive Tools</strong>
+              <span>In-Browser Python Sandbox</span>
+            </div>
+            <div class="meta-item">
+              <strong>Architecture</strong>
+              <span>CPython 3.13 & POSIX</span>
+            </div>
+          </div>
+
+          <div class="toolbar">
+            <a class="btn btn-primary" href="weeks/week-01/course-intro-setup-and-python-basics.html">Start Week 1, Lesson 1.1 →</a>
+            <a class="btn" href="interactive-lab.html">⚡ Interactive Python Lab</a>
+            <a class="btn" href="architecture.html">📐 Course Architecture</a>
+            <a class="btn" href="glossary.html">📖 Python Glossary</a>
+          </div>
+        </header>
+
+        <h2>Curriculum Weeks (1 — 15)</h2>
+        <div class="grid">
+          
+        <div class="card week-card">
+          <span class="week-num">Week 1 · 2 Graduate Lessons</span>
+          <h3>Foundations & Environment</h3>
+          <p>CPython runtime architecture, virtual environments, execution models, memory primitives, and basic operators.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:1.5rem; font-size:0.85rem;">
+            <li><a href="weeks/week-01/course-intro-setup-and-python-basics.html"><strong>1.1</strong> Course Intro, Setup, and Python Basics</a></li><li><a href="weeks/week-01/operators-io-and-type-conversion.html"><strong>1.2</strong> Operators, I/O, and Type Conversion</a></li>
+          </ul>
+          <a class="btn" href="weeks/week-01/index.html">Explore Week 1 Overview →</a>
+        </div>
+        
+        <div class="card week-card">
+          <span class="week-num">Week 2 · 2 Graduate Lessons</span>
+          <h3>Control Flow</h3>
+          <p>Conditionals, branch prediction bytecode, boolean logic, iteration protocols, and loop optimization.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:1.5rem; font-size:0.85rem;">
+            <li><a href="weeks/week-02/conditionals-and-boolean-logic.html"><strong>2.1</strong> Conditionals & Boolean Logic</a></li><li><a href="weeks/week-02/loops-and-iteration-mechanics.html"><strong>2.2</strong> Loops & Iteration Mechanics</a></li>
+          </ul>
+          <a class="btn" href="weeks/week-02/index.html">Explore Week 2 Overview →</a>
+        </div>
+        
+        <div class="card week-card">
+          <span class="week-num">Week 3 · 2 Graduate Lessons</span>
+          <h3>Functions & Modular Design</h3>
+          <p>Execution frames, parameter binding, LEGB scope resolution, closures, recursion limits, and functional pipelines.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:1.5rem; font-size:0.85rem;">
+            <li><a href="weeks/week-03/functions-and-execution-scopes.html"><strong>3.1</strong> Functions & Execution Scopes</a></li><li><a href="weeks/week-03/recursion-and-functional-tools.html"><strong>3.2</strong> Recursion & Functional Tools</a></li>
+          </ul>
+          <a class="btn" href="weeks/week-03/index.html">Explore Week 3 Overview →</a>
+        </div>
+        
+        <div class="card week-card">
+          <span class="week-num">Week 4 · 2 Graduate Lessons</span>
+          <h3>Data Structures I: Sequences</h3>
+          <p>Memory layouts of contiguous sequences, string interning, slicing mechanics, regex automata, and dynamic array resizing.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:1.5rem; font-size:0.85rem;">
+            <li><a href="weeks/week-04/strings-and-text-processing.html"><strong>4.1</strong> Strings & Text Processing</a></li><li><a href="weeks/week-04/lists-and-tuples.html"><strong>4.2</strong> Lists & Tuples</a></li>
+          </ul>
+          <a class="btn" href="weeks/week-04/index.html">Explore Week 4 Overview →</a>
+        </div>
+        
+        <div class="card week-card">
+          <span class="week-num">Week 5 · 2 Graduate Lessons</span>
+          <h3>Data Structures II: Mappings & Sets</h3>
+          <p>Hash tables, compact dictionary memory layout, open addressing collision resolution, set algebra, and the collections module.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:1.5rem; font-size:0.85rem;">
+            <li><a href="weeks/week-05/dictionaries-and-hash-tables.html"><strong>5.1</strong> Dictionaries & Hash Tables</a></li><li><a href="weeks/week-05/sets-and-collections-module.html"><strong>5.2</strong> Sets & collections Module</a></li>
+          </ul>
+          <a class="btn" href="weeks/week-05/index.html">Explore Week 5 Overview →</a>
+        </div>
+        
+        <div class="card week-card">
+          <span class="week-num">Week 6 · 2 Graduate Lessons</span>
+          <h3>Object-Oriented Programming I</h3>
+          <p>Object models, instance vs class namespaces, method descriptor binding, encapsulation, and C3 Linearization MRO.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:1.5rem; font-size:0.85rem;">
+            <li><a href="weeks/week-06/classes-and-objects-internals.html"><strong>6.1</strong> Classes & Objects Internals</a></li><li><a href="weeks/week-06/inheritance-mro-and-polymorphism.html"><strong>6.2</strong> Inheritance, MRO, and Polymorphism</a></li>
+          </ul>
+          <a class="btn" href="weeks/week-06/index.html">Explore Week 6 Overview →</a>
+        </div>
+        
+        <div class="card week-card">
+          <span class="week-num">Week 7 · 2 Graduate Lessons</span>
+          <h3>OOP II & Design Patterns</h3>
+          <p>Data model dunder protocols, operator overloading, composition, and Pythonic enterprise design patterns.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:1.5rem; font-size:0.85rem;">
+            <li><a href="weeks/week-07/dunder-methods-and-composition.html"><strong>7.1</strong> Dunder Methods & Composition</a></li><li><a href="weeks/week-07/design-patterns-in-python.html"><strong>7.2</strong> Design Patterns in Python</a></li>
+          </ul>
+          <a class="btn" href="weeks/week-07/index.html">Explore Week 7 Overview →</a>
+        </div>
+        
+        <div class="card week-card">
+          <span class="week-num">Week 8 · 2 Graduate Lessons</span>
+          <h3>Midterm Checkpoint</h3>
+          <p>Practical systems assessment, timed OOP architecture challenge, Cyclomatic complexity analysis, and peer code refactoring.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:1.5rem; font-size:0.85rem;">
+            <li><a href="weeks/week-08/midterm-project-and-practical-assessment.html"><strong>8.1</strong> Midterm Project & Practical Assessment</a></li><li><a href="weeks/week-08/peer-code-review-and-refactoring.html"><strong>8.2</strong> Peer Code-Review & Refactoring</a></li>
+          </ul>
+          <a class="btn" href="weeks/week-08/index.html">Explore Week 8 Overview →</a>
+        </div>
+        
+        <div class="card week-card">
+          <span class="week-num">Week 9 · 2 Graduate Lessons</span>
+          <h3>Error Handling, Testing & Debugging</h3>
+          <p>Exception unwinding, defensive programming, pytest test suites, fixtures, mocking, and debugging with pdb/logging.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:1.5rem; font-size:0.85rem;">
+            <li><a href="weeks/week-09/exceptions-and-defensive-programming.html"><strong>9.1</strong> Exceptions & Defensive Programming</a></li><li><a href="weeks/week-09/testing-and-debugging-ecosystem.html"><strong>9.2</strong> Testing & Debugging Ecosystem</a></li>
+          </ul>
+          <a class="btn" href="weeks/week-09/index.html">Explore Week 9 Overview →</a>
+        </div>
+        
+        <div class="card week-card">
+          <span class="week-num">Week 10 · 2 Graduate Lessons</span>
+          <h3>File I/O, Data Formats & Persistence</h3>
+          <p>Operating system file descriptors, buffer streaming, CSV/JSON/XML parsing, SQLite persistence, and SQLAlchemy ORM.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:1.5rem; font-size:0.85rem;">
+            <li><a href="weeks/week-10/file-io-and-structured-data.html"><strong>10.1</strong> File I/O & Structured Data</a></li><li><a href="weeks/week-10/databases-and-orm.html"><strong>10.2</strong> Databases & ORM</a></li>
+          </ul>
+          <a class="btn" href="weeks/week-10/index.html">Explore Week 10 Overview →</a>
+        </div>
+        
+        <div class="card week-card">
+          <span class="week-num">Week 11 · 2 Graduate Lessons</span>
+          <h3>Algorithms & Data Structures</h3>
+          <p>Asymptotic Big-O proofs, sorting/searching benchmarks, custom linked lists, binary search trees, and hash tables from scratch.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:1.5rem; font-size:0.85rem;">
+            <li><a href="weeks/week-11/complexity-and-sorting-searching.html"><strong>11.1</strong> Complexity & Sorting/Searching</a></li><li><a href="weeks/week-11/core-data-structures-from-scratch.html"><strong>11.2</strong> Core Data Structures from Scratch</a></li>
+          </ul>
+          <a class="btn" href="weeks/week-11/index.html">Explore Week 11 Overview →</a>
+        </div>
+        
+        <div class="card week-card">
+          <span class="week-num">Week 12 · 2 Graduate Lessons</span>
+          <h3>Concurrency & Performance</h3>
+          <p>OS threading vs multiprocessing, Global Interpreter Lock (GIL) internals, asyncio event loops, and profiling with cProfile/NumPy.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:1.5rem; font-size:0.85rem;">
+            <li><a href="weeks/week-12/concurrency-threading-multiprocessing-asyncio.html"><strong>12.1</strong> Concurrency: Threads, Processes, Asyncio</a></li><li><a href="weeks/week-12/performance-profiling-and-optimization.html"><strong>12.2</strong> Performance Profiling & Optimization</a></li>
+          </ul>
+          <a class="btn" href="weeks/week-12/index.html">Explore Week 12 Overview →</a>
+        </div>
+        
+        <div class="card week-card">
+          <span class="week-num">Week 13 · 2 Graduate Lessons</span>
+          <h3>Applied Python: Data & APIs</h3>
+          <p>NumPy arrays, Pandas DataFrames, exploratory data analysis, REST API consumption, and high-throughput FastAPI web services.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:1.5rem; font-size:0.85rem;">
+            <li><a href="weeks/week-13/data-analysis-stack-numpy-pandas-matplotlib.html"><strong>13.1</strong> Data Analysis Stack: NumPy, Pandas, Matplotlib</a></li><li><a href="weeks/week-13/apis-and-web-services.html"><strong>13.2</strong> APIs & Web Services</a></li>
+          </ul>
+          <a class="btn" href="weeks/week-13/index.html">Explore Week 13 Overview →</a>
+        </div>
+        
+        <div class="card week-card">
+          <span class="week-num">Week 14 · 2 Graduate Lessons</span>
+          <h3>Professional Software Engineering Practices</h3>
+          <p>Git workflows, pyproject.toml packaging, static type checking (mypy/ruff), Docker containerization, and GitHub Actions CI/CD.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:1.5rem; font-size:0.85rem;">
+            <li><a href="weeks/week-14/version-control-linters-and-packaging.html"><strong>14.1</strong> Version Control, Linters & Packaging</a></li><li><a href="weeks/week-14/ci-cd-and-containers.html"><strong>14.2</strong> CI/CD & Containerization</a></li>
+          </ul>
+          <a class="btn" href="weeks/week-14/index.html">Explore Week 14 Overview →</a>
+        </div>
+        
+        <div class="card week-card">
+          <span class="week-num">Week 15 · 2 Graduate Lessons</span>
+          <h3>Capstone Project & Wrap-Up</h3>
+          <p>End-to-end applied software architecture, peer review rubrics, capstone defense, and transition to systems programming & ML engineering.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:1.5rem; font-size:0.85rem;">
+            <li><a href="weeks/week-15/capstone-build-session-and-architectural-review.html"><strong>15.1</strong> Capstone Build Session & Architectural Review</a></li><li><a href="weeks/week-15/final-capstone-defense-and-career-roadmap.html"><strong>15.2</strong> Final Capstone Defense & Career Roadmap</a></li>
+          </ul>
+          <a class="btn" href="weeks/week-15/index.html">Explore Week 15 Overview →</a>
+        </div>
+        
+        </div>
+
+        <footer class="footer">
+          <p>MS Applied Programming (Python) · Master's Curriculum Portal · Built with Python 3.13</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

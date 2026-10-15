@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 2.2: Loops & Iteration Mechanics | MS Applied Programming (Python)</title>
+  <meta name="description" content="Master's-level study of Loops & Iteration Mechanics. Comprehensive theory, CPython internals, math foundations, and hands-on engineering lab.">
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body data-root="../../" data-page-id="week-02/lesson-2-2">
+  <div class="progress" id="readingProgress"></div>
+
+  <div class="mobile-topbar">
+    <button class="btn btn-sm" id="openSidebar">☰ Menu</button>
+    <div class="brand-text">MS Applied Python</div>
+    <button class="theme-toggle-btn btn-sm">🌓</button>
+  </div>
+
+  <div class="site-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a class="brand" href="../../index.html">
+          <div class="brand-mark">Py</div>
+          <div>
+            <h1>Applied Python</h1>
+            <small>MS CS Graduate Portal</small>
+          </div>
+        </a>
+      </div>
+
+      <div class="nav-search">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="site-search-input" id="navSearch" placeholder="Search curriculum...">
+          <span class="search-shortcut">⌘K</span>
+        </div>
+      </div>
+
+      <nav class="course-nav" id="courseNav"></nav>
+
+      <div class="sidebar-footer">
+        <button class="theme-toggle-btn" type="button">🌓 Theme</button>
+        <span style="font-size:0.75rem; color:var(--text-muted);">Python 3.13 Ready</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="page-wrap">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <a href="../../weeks/week-02/index.html">Week 2: Control Flow</a>
+          <span class="separator">/</span>
+          <span>Lesson 2.2</span>
+        </nav>
+
+        <header class="hero">
+          <div class="eyebrow">Week 2 · Lesson 2.2</div>
+          <h1>Loops & Iteration Mechanics</h1>
+          <p class="lead">for/while bytecode mechanics, loop else semantics, iterator protocol (iter, next), loop unrolling, and prime sieves.</p>
+
+          <div class="meta-grid">
+            <div class="meta-item">
+              <strong>Estimated Time</strong>
+              <span>105 min</span>
+            </div>
+            <div class="meta-item">
+              <strong>Academic Level</strong>
+              <span>Foundational · MS Level</span>
+            </div>
+            <div class="meta-item">
+              <strong>Runtime Stack</strong>
+              <span>CPython 3.13 / POSIX</span>
+            </div>
+            <div class="meta-item">
+              <strong>Verification</strong>
+              <span>PyTest + Typing</span>
+            </div>
+          </div>
+
+          <div class="toolbar">
+            <button class="btn btn-primary" id="completeBtn" type="button">Mark Complete</button>
+            <button class="btn" id="bookmarkBtn" type="button">☆ Bookmark</button>
+            <button class="btn" id="quizModeBtn" type="button">Toggle Quiz Mode</button>
+            <button class="btn print-page" type="button">🖨️ Export PDF</button>
+          </div>
+        </header>
+
+        <div class="layout-article">
+          <article class="article">
+            <!-- 1. Introduction -->
+            <section id="section-1">
+              <h2>1. Introduction & Systems Intuition</h2>
+              <p>In modern computer science and enterprise software engineering, <strong>Loops & Iteration Mechanics</strong> represents a cornerstone discipline. While introductory programming treats code as abstract scripts, graduate-level software engineering requires understanding the physical machine mechanics: memory layouts, CPython virtual machine bytecode evaluation, instruction pointer dispatching, and operating system system calls.</p>
+              <p>This module deconstructs <strong>Loops & Iteration Mechanics</strong> from first principles: analyzing memory allocation hierarchies, execution invariants, computational complexity, and production software patterns.</p>
+            </section>
+
+            <!-- 2. Graduate Learning Outcomes -->
+            <section id="section-2">
+              <h2>2. Graduate Learning Outcomes</h2>
+              <ul>
+                <li><strong>Theoretical Mastery:</strong> Rigorously analyze the operational semantics, data structures, and algorithms underlying Loops & Iteration Mechanics.</li>
+                <li><strong>CPython Systems Internals:</strong> Trace C-level struct representations (<code>PyObject</code>, pointer arrays, hash buckets) and memory lifecycle events.</li>
+                <li><strong>Asymptotic Complexity:</strong> Formulate formal mathematical proofs ($\mathcal{O}$, $\Omega$, $\Theta$) for time and space scaling.</li>
+                <li><strong>Production Engineering:</strong> Implement defensive, typed, PEP 8 compliant Python solutions with automated test verification.</li>
+              </ul>
+            </section>
+
+            <!-- 3. Prerequisites -->
+            <section id="section-3">
+              <h2>3. Prerequisites & Boundary Conditions</h2>
+              <p>Students are expected to possess proficiency in foundational computer architecture (RAM, CPU cache, pointers), standard terminal commands, and basic Python syntax. Boundary invariants enforced across this module:</p>
+              <ul>
+                <li><strong>Deterministic Execution:</strong> Zero undefined behavior; proper exception propagation across stack boundaries.</li>
+                <li><strong>Resource Safety:</strong> Strict context manager bounds preventing memory leaks, socket starvation, and unclosed file descriptors.</li>
+              </ul>
+            </section>
+
+            <!-- 4. Core Concepts & CPython Systems Internals -->
+            <section id="section-4">
+              <h2>4. Core Concepts & CPython Systems Internals</h2>
+              
+          <h3>4.1 CPython Virtual Machine Architecture & The PyObject Model</h3>
+          <p>Python is an interpreted, bytecode-compiled, dynamically typed language. When a Python source file (<code>.py</code>) is invoked, the CPython interpreter executes a multi-stage compilation pipeline: Lexical Analysis $\to$ Abstract Syntax Tree (AST) Generation $\to$ Control Flow Graph Construction $\to$ Bytecode Generation (<code>.pyc</code> cache).</p>
+          <p>At the C systems layer, every entity in Python—from small integers and booleans to complex classes and functions—is represented by a heap-allocated C struct known as <code>PyObject</code>:</p>
+          <pre><code class="language-c">// CPython Include/object.h
+typedef struct _object {{
+    _PyObject_HEAD_EXTRA
+    Py_ssize_t ob_refcnt;          // 64-bit reference counter
+    struct _typeobject *ob_type;   // Pointer to class type metadata
+}} PyObject;</code></pre>
+          <p>Because every variable binding is a pointer to a <code>PyObject</code>, integer arithmetic incurs pointer indirection overhead compared to native C integers ($32$ or $64$ bits directly in CPU registers). Variable assignment in Python does not duplicate memory; it increments the object's reference counter (<code>ob_refcnt</code>) and associates a symbol table name with the memory address.</p>
+
+          <h3>4.2 Operator Bytecode Evaluation & Short-Circuit Branching</h3>
+          <p>Python evaluates operators using a stack-based virtual machine. When expressions such as <code>a + b * c</code> or <code>x and y</code> are parsed, the compiler generates sequential evaluation opcodes (e.g. <code>BINARY_OP</code>, <code>COMPARE_OP</code>, <code>POP_JUMP_IF_FALSE</code>).</p>
+          <p>Logical operators in Python (<code>and</code>, <code>or</code>) utilize <strong>short-circuit evaluation</strong>. Rather than returning pure boolean flags, they return the actual operand that satisfied or broke the evaluation condition, allowing concise idiomatic fallback patterns (e.g., <code>user_val or default_val</code>).</p>
+
+          <h3>4.3 The Iterator Protocol & Memory Complexity</h3>
+          <p>Looping in Python does not rely on index counters. Instead, the <code>for</code> statement consumes the <strong>Iterator Protocol</strong>: calling <code>iter(iterable)</code> to obtain an iterator object implementing <code>__next__()</code>. Iteration terminates cleanly when the object raises a <code>StopIteration</code> exception. This enables $\mathcal{{O}}(1)$ constant memory overhead during large dataset streams compared to $\mathcal{{O}}(N)$ memory consumption when loading full arrays into RAM.</p>
+        
+            </section>
+
+            <!-- 5. Visual Architecture & Flow Diagrams -->
+            <section id="section-5">
+              <h2>5. Visual Architecture & Flow Diagrams</h2>
+              <div class="diagram">
+                <div class="mermaid">
+flowchart TD
+  Source[Python Source Code .py] --> Lex[Lexer & Tokenizer]
+  Lex --> Parser[AST Abstract Syntax Tree]
+  Parser --> CFG[Control Flow Graph Optimizer]
+  CFG --> Bytecode[CPython Bytecode .pyc]
+  Bytecode --> EvalLoop[Evaluation Loop: _PyEval_EvalFrameDefault]
+  EvalLoop --> PyObj[(Heap: PyObject Structs & Memory Arena)]
+                </div>
+              </div>
+            </section>
+
+            <!-- 6. Mind Maps & Taxonomies -->
+            <section id="section-6">
+              <h2>6. Mind Maps & Taxonomy</h2>
+              <p>The structural taxonomy below categorizes the computational components of Loops & Iteration Mechanics:</p>
+              <div class="diagram">
+                <div class="mermaid">
+mindmap
+  root((Loops & Iteration Mechanics))
+    Runtime Engine
+      CPython Virtual Machine
+      Bytecode Disassembly
+      Stack Frame Allocator
+    Memory Management
+      PyObject Reference Count
+      Cyclic Garbage Collector
+      Arena Allocator
+    Software Quality
+      Static Type Checking mypy
+      PyTest Automated Tests
+      PEP 8 Compliance
+    Performance
+      Asymptotic Big-O Scaling
+      SIMD Vectorization
+      Zero-Copy Slicing
+                </div>
+              </div>
+            </section>
+
+            <!-- 7. Mathematical & Asymptotic Foundations -->
+            <section id="section-7">
+              <h2>7. Mathematical & Asymptotic Foundations</h2>
+              
+          <p><strong>Memory Footprint & Asymptotic Loop Iteration Complexity:</strong></p>
+          <p>Let $N$ represent the number of numerical records processed in a stream. The memory allocation cost $M(N)$ for an eagerly evaluated list versus a lazy iterator is formulated as:</p>
+          $$M_{\text{list}}(N) = \mathcal{O}(N) \cdot S_{\text{PyObject}} \quad \text{vs.} \quad M_{\text{iterator}}(N) = \mathcal{O}(1)$$
+          <p>Where $S_{\text{PyObject}} \approx 28\text{ bytes}$ for a 64-bit integer object on CPython. For $N = 10{,}000{,}000$ records:</p>
+          $$\text{List Allocation} = 10^7 \times 28\text{ bytes} \approx 280\text{ MB RAM}$$
+          $$\text{Iterator Allocation} = 1 \times 28\text{ bytes} \approx 28\text{ bytes RAM}$$
+          <p>Achieving a $10{,}000{,}000\times$ reduction in peak memory consumption.</p>
+        
+            </section>
+
+            <!-- 8. Industry Engineering Scenarios -->
+            <section id="section-8">
+              <h2>8. Practical Industry Engineering Scenarios</h2>
+              <p>In high-scale enterprise platforms (e.g. Instagram, Dropbox, Stripe), Loops & Iteration Mechanics directly dictates infrastructure efficiency:</p>
+              <ul>
+                <li><strong>Low-Latency Microservices:</strong> Minimizing object allocation rates and GIL lock contention in API backends to achieve sub-10ms $p99$ response times.</li>
+                <li><strong>Data Processing Pipelines:</strong> Leveraging streaming generators and columnar memory layouts to process multi-terabyte feeds without out-of-memory (OOM) crashes.</li>
+              </ul>
+            </section>
+
+            <!-- 9. Production-Grade Python Implementations -->
+            <section id="section-9">
+              <h2>9. Production-Grade Python Implementations</h2>
+              <pre><code class="language-python">#!/usr/bin/env python3
+"""
+CPython Bytecode Disassembly & High-Precision Temperature Conversion Module:
+Demonstrates AST evaluation, type annotations, and custom exception handling.
+"""
+import dis
+import sys
+
+class TemperatureConversionError(Exception):
+    """Custom domain exception for invalid physical temperatures."""
+    pass
+
+def celsius_to_fahrenheit(celsius: float) -> float:
+    """
+    Converts Celsius to Fahrenheit with thermodynamic absolute zero validation.
+    Formula: F = (C * 9/5) + 32
+    """
+    if celsius < -273.15:
+        raise TemperatureConversionError(f"Temperature {celsius}C is below absolute zero (-273.15C).")
+    return (celsius * 9.0 / 5.0) + 32.0
+
+def fahrenheit_to_celsius(fahrenheit: float) -> float:
+    """
+    Converts Fahrenheit to Celsius with thermodynamic absolute zero validation.
+    Formula: C = (F - 32) * 5/9
+    """
+    if fahrenheit < -459.67:
+        raise TemperatureConversionError(f"Temperature {fahrenheit}F is below absolute zero (-459.67F).")
+    return (fahrenheit - 32.0) * 5.0 / 9.0
+
+if __name__ == "__main__":
+    test_temps_c = [0.0, 21.5, 100.0, -40.0]
+    print("--- Temperature Conversion Suite ---")
+    for c in test_temps_c:
+        f = celsius_to_fahrenheit(c)
+        c_back = fahrenheit_to_celsius(f)
+        print(f"{c:6.2f}°C  -->  {f:6.2f}°F  -->  {c_back:6.2f}°C (Verified: {abs(c - c_back) < 1e-9})")
+    
+    print("
+--- Disassembled CPython Bytecode ---")
+    dis.dis(celsius_to_fahrenheit)</code></pre>
+            </section>
+
+            <!-- 10. Security & Defensive Programming -->
+            <section id="section-10">
+              <h2>10. Security, Defensive Programming & Threat Modeling</h2>
+              <div class="callout warning">
+                <summary>Security Advisory: Defensive Invariants</summary>
+                <p>Always enforce explicit type validation, input sanitization, and parameterized database queries. Avoid using <code>eval()</code> or deserializing untrusted payloads with <code>pickle</code> (which allows arbitrary remote code execution via <code>__reduce__</code> exploits). Use <code>json</code> or <code>pydantic</code> for safe data interchange.</p>
+              </div>
+            </section>
+
+            <!-- 11. Industry Software Engineering Practices -->
+            <section id="section-11">
+              <h2>11. Industry Software Engineering Practices</h2>
+              <ul>
+                <li><strong>Static Type Typing:</strong> Enforce strict annotations validated via <code>mypy --strict</code>.</li>
+                <li><strong>Formatting & Linting:</strong> Standardize on <code>ruff</code> and <code>black</code> in pre-commit Git hooks.</li>
+                <li><strong>Dependency Hygiene:</strong> Pin dependencies deterministically via <code>pyproject.toml</code> lockfiles.</li>
+              </ul>
+            </section>
+
+            <!-- 12. Academic Citations -->
+            <section id="section-12">
+              <h2>12. Academic & Computer Science Citations</h2>
+              <ul>
+                <li>Van Rossum, G., & Drake, F. L. (2009). <em>The Python Language Reference Manual</em>. Network Theory Ltd.</li>
+                <li>Hettinger, R. (2012). <em>Modern Python Dictionaries: A Confluence of A Beautiful Idea</em>. PyCon US.</li>
+                <li>Peters, T. (2002). <em>Timsort: An Adaptive, Stable, Natural Mergesort</em>. Python Software Foundation.</li>
+              </ul>
+            </section>
+
+            <!-- 13. Case Studies -->
+            <section id="section-13">
+              <h2>13. Real-World Case Studies</h2>
+              <p><strong>Instagram CPython Scale:</strong> Instagram serves billions of daily requests on a monolithic Django/CPython cluster. By disabling cyclic garbage collection on web worker processes and relying purely on reference counting and memory copy-on-write sharing across preforked master processes, Instagram saved over $10\%$ of server cluster memory overhead.</p>
+            </section>
+
+            <!-- 14. Common Misconceptions -->
+            <section id="section-14">
+              <h2>14. Common Misconceptions & Anti-Patterns</h2>
+              <ul>
+                <li><em>Misconception:</em> Python passes arguments by value or by reference.<br>
+                <strong>Reality:</strong> Python uses <em>Pass-by-Object-Reference</em> (or Call-by-Sharing). The function receives a reference to the bound object, but reassigning the local parameter name does not rebind the caller's variable.</li>
+                <li><em>Misconception:</em> The GIL makes multi-threaded Python programs thread-safe.<br>
+                <strong>Reality:</strong> The GIL only protects CPython internal struct invariants. User-level operations across multiple bytecode instructions still require explicit mutex locks (<code>threading.Lock</code>) to prevent race conditions.</li>
+              </ul>
+            </section>
+
+            <!-- 15. Executive Summary -->
+            <section id="section-15">
+              <h2>15. Executive & Engineering Summary</h2>
+              <p>Mastering <strong>Loops & Iteration Mechanics</strong> bridges the gap between surface-level scripting and high-performance software engineering. Understanding CPython's execution model empowers engineers to architect memory-efficient, robust, and horizontally scalable backend systems.</p>
+            </section>
+
+            <!-- 16. Module Glossary -->
+            <section id="section-16">
+              <h2>16. Module Glossary Terms</h2>
+              <table>
+                <thead>
+                  <tr><th>Term</th><th>Category</th><th>Definition</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>PyObject</code></td><td>Memory</td><td>Foundational C struct encapsulating reference count and type metadata pointer.</td></tr>
+                  <tr><td><code>GIL</code></td><td>Concurrency</td><td>Global Interpreter Lock synchronizing CPython bytecode execution.</td></tr>
+                  <tr><td><code>MRO</code></td><td>OOP</td><td>Method Resolution Order computed via the C3 Linearization algorithm.</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- 17. Self-Assessment Quiz -->
+            <section id="section-17">
+              <h2>17. Interactive Self-Assessment Quiz</h2>
+              <ul class="quiz-list">
+                <li data-answer="CPython objects are allocated on the heap inside a PyObject struct containing an 8-byte reference counter (ob_refcnt) and an 8-byte type descriptor pointer (ob_type), introducing pointer indirection overhead compared to unboxed C scalars.">Why does an integer in Python consume ~28 bytes of memory whereas an integer in C consumes only 4 or 8 bytes?</li>
+                <li data-answer="The GIL protects CPython interpreter memory invariants, but thread switching occurs between bytecode instructions. If a shared state operation requires multiple bytecodes (e.g. read-modify-write on an integer), race conditions will corrupt application state without a threading.Lock.">Why does Python's GIL not guarantee application-level thread safety for shared mutable variables?</li>
+                <li data-answer="C3 Linearization guarantees local precedence order (a class comes before its parents) and monotonicity (parent precedence order is preserved across all descendants).">What formal properties does the C3 Linearization algorithm preserve during Python multiple inheritance MRO resolution?</li>
+              </ul>
+            </section>
+
+            <!-- 18. Hands-On Practice Lab & Engineering Drill -->
+            <section id="section-18">
+              <h2>18. Expanded Hands-On Practice Lab & Engineering Drill</h2>
+              <div class="interactive-widget-box">
+                <div class="widget-header">
+                  <div class="widget-title">⚡ Hands-On Lab: Loops & Iteration Mechanics</div>
+                  <span class="widget-badge">4-Step Engineering Lab</span>
+                </div>
+                
+          <p><strong>Lab Objective:</strong> Build a high-precision, interactive CLI financial splitting & BMI diagnostic engine in Python 3.13, enforcing defensive input validation, type casting, mathematical bounds checking, and formatted output reporting.</p>
+
+          <h4>Step 1: Financial Split & BMI Diagnostic Implementation</h4>
+          <pre><code class="language-python"># financial_and_health_cli.py
+from typing import Tuple, List, Dict
+import math
+
+def calculate_bmi(weight_kg: float, height_m: float) -> Tuple[float, str]:
+    if height_m <= 0 or weight_kg <= 0:
+        raise ValueError("Height and weight must be strictly positive numeric values.")
+    bmi = weight_kg / (height_m ** 2)
+    if bmi < 18.5:
+        category = "Underweight"
+    elif bmi < 25.0:
+        category = "Normal Weight"
+    elif bmi < 30.0:
+        category = "Overweight"
+    else:
+        category = "Obese"
+    return round(bmi, 2), category
+
+def split_bill_with_tip(subtotal: float, tip_percent: float, num_people: int) -> Dict[str, float]:
+    if subtotal < 0 or tip_percent < 0 or num_people <= 0:
+        raise ValueError("Invalid bill parameters. Ensure subtotal >= 0, tip >= 0, and people >= 1.")
+    
+    tip_amount = subtotal * (tip_percent / 100.0)
+    total_bill = subtotal + tip_amount
+    per_person = math.ceil((total_bill / num_people) * 100) / 100.0  # Round up to prevent penny deficit
+    
+    return {{
+        "subtotal": round(subtotal, 2),
+        "tip_amount": round(tip_amount, 2),
+        "total_bill": round(total_bill, 2),
+        "per_person": per_person,
+        "num_people": num_people
+    }}
+
+if __name__ == "__main__":
+    print("=== Health Diagnostic Run ===")
+    bmi_val, cat = calculate_bmi(weight_kg=78.5, height_m=1.82)
+    print(f"Computed BMI: {{bmi_val}} | Category: {{cat}}")
+
+    print("\n=== Expense Split Run ===")
+    summary = split_bill_with_tip(subtotal=245.50, tip_percent=18.0, num_people=4)
+    for k, v in summary.items():
+        print(f"  {{k.replace('_', ' ').capitalize():15}}: ${{v:,.2f}}" if isinstance(v, float) else f"  {{k:15}}: {{v}}")</code></pre>
+
+          <h4>Step 2: Execution & Output Verification</h4>
+          <pre><code class="language-bash">python financial_and_health_cli.py</code></pre>
+          <p>Expected stdout output:</p>
+          <pre><code>=== Health Diagnostic Run ===
+Computed BMI: 23.7 | Category: Normal Weight
+
+=== Expense Split Run ===
+  Subtotal       : $245.50
+  Tip amount     : $44.19
+  Total bill     : $289.69
+  Per person     : $72.43
+  num_people     : 4</code></pre>
+
+          <h4>Step 3: Edge Case & Exception Validation</h4>
+          <pre><code class="language-python"># test_edge_cases.py
+import pytest
+from financial_and_health_cli import calculate_bmi, split_bill_with_tip
+
+def test_invalid_bmi_inputs():
+    with pytest.raises(ValueError):
+        calculate_bmi(-50.0, 1.75)
+    with pytest.raises(ValueError):
+        calculate_bmi(70.0, 0.0)
+
+def test_split_bill_math():
+    res = split_bill_with_tip(100.0, 20.0, 3)
+    assert res["total_bill"] == 120.0
+    assert res["per_person"] * 3 >= 120.0  # Zero-deficit guarantee</code></pre>
+
+          <h4>Step 4: Graduate Extension Challenge</h4>
+          <p>Implement an algorithmic Sieve of Eratosthenes generator in Python that computes all prime numbers up to $N = 1{,}000{,}000$ in $\mathcal{{O}}(N \log \log N)$ time using a pre-allocated bytearray buffer.</p>
+        
+              </div>
+            </section>
+
+            <!-- 19. Further Reading -->
+            <section id="section-19">
+              <h2>19. Curated Further Reading & PEP Citations</h2>
+              <ul>
+                <li><a href="https://peps.python.org/pep-0008/" target="_blank" rel="noopener">PEP 8 – Style Guide for Python Code</a></li>
+                <li><a href="https://peps.python.org/pep-0393/" target="_blank" rel="noopener">PEP 393 – Flexible String Representation</a></li>
+                <li><a href="https://peps.python.org/pep-0703/" target="_blank" rel="noopener">PEP 703 – Making the Global Interpreter Lock Optional in CPython</a></li>
+              </ul>
+            </section>
+          </article>
+
+          <!-- Sticky TOC -->
+          <aside class="toc">
+            <h2>On This Page</h2>
+            <ol id="tocList"></ol>
+          </aside>
+        </div>
+
+        <div class="prev-next">
+          <a class="btn" href="../../weeks/week-02/conditionals-and-boolean-logic.html">← Previous: 2.1 Conditionals & Boolean Logic</a>
+          <a class="btn btn-primary" href="../../weeks/week-03/functions-and-execution-scopes.html">Next: 3.1 Functions & Execution Scopes →</a>
+        </div>
+
+        <footer class="footer">
+          <p>MS Applied Programming (Python) · Master's Curriculum Portal · Built with Python 3.13</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python & CS Terminology Glossary | MS Applied Python</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-root="" data-page-id="glossary">
+  <div class="progress" id="readingProgress"></div>
+
+  <div class="mobile-topbar">
+    <button class="btn btn-sm" id="openSidebar">☰ Menu</button>
+    <div class="brand-text">MS Applied Python</div>
+    <button class="theme-toggle-btn btn-sm">🌓</button>
+  </div>
+
+  <div class="site-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a class="brand" href="index.html">
+          <div class="brand-mark">Py</div>
+          <div>
+            <h1>Applied Python</h1>
+            <small>MS CS Graduate Portal</small>
+          </div>
+        </a>
+      </div>
+      <div class="nav-search">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="site-search-input" id="navSearch" placeholder="Search curriculum...">
+          <span class="search-shortcut">⌘K</span>
+        </div>
+      </div>
+      <nav class="course-nav" id="courseNav"></nav>
+      <div class="sidebar-footer">
+        <button class="theme-toggle-btn" type="button">🌓 Theme</button>
+        <span style="font-size:0.75rem; color:var(--text-muted);">Python 3.13 Ready</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="page-wrap">
+        <nav class="breadcrumbs">
+          <a href="index.html">Home</a>
+          <span class="separator">/</span>
+          <span>Python Terminology Glossary</span>
+        </nav>
+
+        <header class="hero">
+          <div class="eyebrow">Reference Dictionary</div>
+          <h1>Python & Computer Science Terminology Glossary</h1>
+          <p class="lead">Searchable dictionary of fundamental CPython, algorithms, concurrency, and OOP systems concepts.</p>
+        </header>
+
+        <div style="margin-bottom:1.5rem; display:flex; gap:1rem; align-items:center;">
+          <input type="text" id="glossaryFilterInput" placeholder="Filter terms (e.g. GIL, PyObject, MRO)..." class="site-search-input" style="max-width:400px;">
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width:25%;">Term</th>
+              <th style="width:20%;">Category</th>
+              <th>Definition & Technical Context</th>
+            </tr>
+          </thead>
+          <tbody id="glossaryTableBody">
+            
+        <tr class="glossary-row" data-term="cpython" data-cat="runtime">
+          <td style="font-weight:700; color:var(--accent-blue); font-family:var(--font-mono);">CPython</td>
+          <td><span class="widget-badge">Runtime</span></td>
+          <td style="font-size:0.92rem; color:var(--text-secondary);">The standard, reference C-based implementation of the Python programming language that compiles Python source code into bytecode and executes it via a stack-based virtual machine.</td>
+        </tr>
+        
+        <tr class="glossary-row" data-term="pyobject" data-cat="memory">
+          <td style="font-weight:700; color:var(--accent-blue); font-family:var(--font-mono);">PyObject</td>
+          <td><span class="widget-badge">Memory</span></td>
+          <td style="font-size:0.92rem; color:var(--text-secondary);">The foundational C struct in CPython from which all Python objects inherit, containing the reference count (ob_refcnt) and the object type pointer (ob_type).</td>
+        </tr>
+        
+        <tr class="glossary-row" data-term="global interpreter lock (gil)" data-cat="concurrency">
+          <td style="font-weight:700; color:var(--accent-blue); font-family:var(--font-mono);">Global Interpreter Lock (GIL)</td>
+          <td><span class="widget-badge">Concurrency</span></td>
+          <td style="font-size:0.92rem; color:var(--text-secondary);">A mutual-exclusion lock used by CPython to ensure only one OS thread executes Python bytecode at any given moment, preventing race conditions on memory reference counts.</td>
+        </tr>
+        
+        <tr class="glossary-row" data-term="method resolution order (mro)" data-cat="oop">
+          <td style="font-weight:700; color:var(--accent-blue); font-family:var(--font-mono);">Method Resolution Order (MRO)</td>
+          <td><span class="widget-badge">OOP</span></td>
+          <td style="font-size:0.92rem; color:var(--text-secondary);">The deterministic algorithmic order (computed via C3 Linearization) in which Python searches for method implementations across complex multiple inheritance class hierarchies.</td>
+        </tr>
+        
+        <tr class="glossary-row" data-term="abstract base class (abc)" data-cat="oop">
+          <td style="font-weight:700; color:var(--accent-blue); font-family:var(--font-mono);">Abstract Base Class (ABC)</td>
+          <td><span class="widget-badge">OOP</span></td>
+          <td style="font-size:0.92rem; color:var(--text-secondary);">A class defined via the abc module that enforces interface contracts by prohibiting instantiation of subclasses unless all @abstractmethod declarations are overridden.</td>
+        </tr>
+        
+        <tr class="glossary-row" data-term="dunder methods" data-cat="data model">
+          <td style="font-weight:700; color:var(--accent-blue); font-family:var(--font-mono);">Dunder Methods</td>
+          <td><span class="widget-badge">Data Model</span></td>
+          <td style="font-size:0.92rem; color:var(--text-secondary);">Special 'double underscore' methods (e.g. __init__, __getitem__, __call__) that bind user-defined classes into Python's built-in syntax, operators, and protocols.</td>
+        </tr>
+        
+        <tr class="glossary-row" data-term="dynamic array over-allocation" data-cat="algorithms">
+          <td style="font-weight:700; color:var(--accent-blue); font-family:var(--font-mono);">Dynamic Array Over-Allocation</td>
+          <td><span class="widget-badge">Algorithms</span></td>
+          <td style="font-size:0.92rem; color:var(--text-secondary);">The growth strategy used by Python's list where extra capacity is pre-allocated proportionally during appends to achieve amortized O(1) insertion time.</td>
+        </tr>
+        
+        <tr class="glossary-row" data-term="hash table perturbation" data-cat="data structures">
+          <td style="font-weight:700; color:var(--accent-blue); font-family:var(--font-mono);">Hash Table Perturbation</td>
+          <td><span class="widget-badge">Data Structures</span></td>
+          <td style="font-size:0.92rem; color:var(--text-secondary);">The collision resolution algorithm in CPython dicts that incorporates high-order bits of the hash code to break cyclic probing patterns in open addressing.</td>
+        </tr>
+        
+        <tr class="glossary-row" data-term="call stack frame (pyframeobject)" data-cat="runtime">
+          <td style="font-weight:700; color:var(--accent-blue); font-family:var(--font-mono);">Call Stack Frame (PyFrameObject)</td>
+          <td><span class="widget-badge">Runtime</span></td>
+          <td style="font-size:0.92rem; color:var(--text-secondary);">The heap-allocated C struct representing a function execution scope, storing local variables, the evaluation value stack, instruction pointer, and globals dict.</td>
+        </tr>
+        
+        <tr class="glossary-row" data-term="asyncio event loop" data-cat="concurrency">
+          <td style="font-weight:700; color:var(--accent-blue); font-family:var(--font-mono);">Asyncio Event Loop</td>
+          <td><span class="widget-badge">Concurrency</span></td>
+          <td style="font-size:0.92rem; color:var(--text-secondary);">A single-threaded reactive scheduler that manages and dispatches asynchronous tasks and I/O callbacks via non-blocking OS multiplexers (epoll/kqueue).</td>
+        </tr>
+        
+        <tr class="glossary-row" data-term="descriptor protocol" data-cat="metaprogramming">
+          <td style="font-weight:700; color:var(--accent-blue); font-family:var(--font-mono);">Descriptor Protocol</td>
+          <td><span class="widget-badge">Metaprogramming</span></td>
+          <td style="font-size:0.92rem; color:var(--text-secondary);">An object attribute protocol implementing __get__, __set__, or __delete__, providing the underlying engine for properties, classmethods, and ORM fields.</td>
+        </tr>
+        
+        <tr class="glossary-row" data-term="timsort" data-cat="algorithms">
+          <td style="font-weight:700; color:var(--accent-blue); font-family:var(--font-mono);">Timsort</td>
+          <td><span class="widget-badge">Algorithms</span></td>
+          <td style="font-size:0.92rem; color:var(--text-secondary);">A hybrid adaptive sorting algorithm combining MergeSort and InsertionSort designed by Tim Peters, providing O(N) best-case and O(N log N) worst-case time complexity.</td>
+        </tr>
+        
+        <tr class="glossary-row" data-term="context manager" data-cat="control flow">
+          <td style="font-weight:700; color:var(--accent-blue); font-family:var(--font-mono);">Context Manager</td>
+          <td><span class="widget-badge">Control Flow</span></td>
+          <td style="font-size:0.92rem; color:var(--text-secondary);">An object adhering to the runtime context protocol (__enter__ and __exit__) utilized within 'with' statements to guarantee deterministic resource cleanup.</td>
+        </tr>
+        
+        <tr class="glossary-row" data-term="cyclomatic complexity" data-cat="software eng">
+          <td style="font-weight:700; color:var(--accent-blue); font-family:var(--font-mono);">Cyclomatic Complexity</td>
+          <td><span class="widget-badge">Software Eng</span></td>
+          <td style="font-size:0.92rem; color:var(--text-secondary);">A software metric indicating the number of linearly independent execution paths through source code, calculated as M = E - N + 2P.</td>
+        </tr>
+        
+        <tr class="glossary-row" data-term="simd vectorization" data-cat="performance">
+          <td style="font-weight:700; color:var(--accent-blue); font-family:var(--font-mono);">SIMD Vectorization</td>
+          <td><span class="widget-badge">Performance</span></td>
+          <td style="font-size:0.92rem; color:var(--text-secondary);">Single Instruction Multiple Data: hardware CPU instructions utilized by NumPy to perform parallel arithmetic operations across contiguous memory buffers in C.</td>
+        </tr>
+        
+          </tbody>
+        </table>
+
+        <footer class="footer">
+          <p>MS Applied Programming (Python) · Master's Curriculum Portal · Built with Python 3.13</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/site.js"></script>
+  <script>
+    document.getElementById('glossaryFilterInput').addEventListener('input', function(e) {
+      const q = e.target.value.toLowerCase();
+      document.querySelectorAll('.glossary-row').forEach(row => {
+        const term = row.getAttribute('data-term');
+        const cat = row.getAttribute('data-cat');
+        const text = row.innerText.toLowerCase();
+        row.style.display = (term.includes(q) || cat.includes(q) || text.includes(q)) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

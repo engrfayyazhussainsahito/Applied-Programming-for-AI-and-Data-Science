@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Python Lab & Algorithm Workbench | MS Applied Python</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-root="" data-page-id="interactive-lab">
+  <div class="progress" id="readingProgress"></div>
+
+  <div class="mobile-topbar">
+    <button class="btn btn-sm" id="openSidebar">☰ Menu</button>
+    <div class="brand-text">MS Applied Python</div>
+    <button class="theme-toggle-btn btn-sm">🌓</button>
+  </div>
+
+  <div class="site-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a class="brand" href="index.html">
+          <div class="brand-mark">Py</div>
+          <div>
+            <h1>Applied Python</h1>
+            <small>MS CS Graduate Portal</small>
+          </div>
+        </a>
+      </div>
+      <div class="nav-search">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="site-search-input" id="navSearch" placeholder="Search curriculum...">
+          <span class="search-shortcut">⌘K</span>
+        </div>
+      </div>
+      <nav class="course-nav" id="courseNav"></nav>
+      <div class="sidebar-footer">
+        <button class="theme-toggle-btn" type="button">🌓 Theme</button>
+        <span style="font-size:0.75rem; color:var(--text-muted);">Python 3.13 Ready</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="page-wrap">
+        <nav class="breadcrumbs">
+          <a href="index.html">Home</a>
+          <span class="separator">/</span>
+          <span>Interactive Python Lab</span>
+        </nav>
+
+        <header class="hero">
+          <div class="eyebrow">Interactive Workbench</div>
+          <h1>Interactive Python Lab & Algorithm Workbench</h1>
+          <p class="lead">Experiment with Python scripts, simulate Big-O complexity scaling, and inspect interactive data structures client-side in real-time.</p>
+        </header>
+
+        <!-- Tool 1: Interactive Python Playground -->
+        <section class="interactive-widget-box">
+          <div class="widget-header">
+            <div class="widget-title">🐍 Tool 1: In-Browser Python Code Playground</div>
+            <span class="widget-badge">Interactive Simulator</span>
+          </div>
+          <p style="margin-bottom:1rem; font-size:0.9rem; color:var(--text-secondary);">Select a preset algorithm or type your own Python 3.13 script below to execute and inspect runtime output:</p>
+          
+          <div style="margin-bottom:1rem; display:flex; gap:1rem; align-items:center;">
+            <label style="font-weight:600; font-size:0.85rem;">Preset Algorithm:</label>
+            <select id="pyPresetSelect" style="padding:0.4rem 0.8rem; background:var(--bg-surface-elevated); color:var(--text-primary); border:1px solid var(--border-color); border-radius:var(--radius-sm);">
+              <option value="fib">Memoized Recursive Fibonacci</option>
+              <option value="matrix">Matrix Transposition & Comprehensions</option>
+              <option value="oop">Observer Pattern Event Dispatcher</option>
+              <option value="quicksort">QuickSort Algorithm</option>
+            </select>
+          </div>
+
+          <div class="py-editor-container">
+            <textarea id="pyCodeInput" class="py-textarea"># Memoized Recursive Fibonacci in Python
+import functools
+
+@functools.lru_cache(maxsize=128)
+def fibonacci(n: int) -> int:
+    if n < 2:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+print("Computing Fibonacci Sequence (n=1 to 12):")
+results = [fibonacci(i) for i in range(1, 13)]
+print("Results:", results)
+print("Cache Info:", fibonacci.cache_info())</textarea>
+
+            <div style="display:flex; gap:0.75rem;">
+              <button class="btn btn-primary" id="runPythonBtn" type="button">▶ Execute Script</button>
+              <button class="btn" id="resetPythonBtn" type="button">Reset</button>
+            </div>
+
+            <div style="font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-muted); margin-top:0.5rem;">Console Execution Output:</div>
+            <div id="pyConsoleOutput" class="py-console-output">>>> Ready for execution. Click "Execute Script".</div>
+          </div>
+        </section>
+
+        <!-- Tool 2: Big-O Complexity Graph -->
+        <section class="interactive-widget-box">
+          <div class="widget-header">
+            <div class="widget-title">📈 Tool 2: Big-O Algorithm Complexity Simulator</div>
+            <span class="widget-badge">Asymptotic Analysis</span>
+          </div>
+          <p style="margin-bottom:1rem; font-size:0.9rem; color:var(--text-secondary);">Drag the input scale slider to evaluate theoretical CPU operation counts across asymptotic complexity classes:</p>
+          
+          <div style="display:flex; align-items:center; gap:1.5rem; margin-bottom:1rem;">
+            <input type="range" id="bigONSlider" min="10" max="10000" step="10" value="1000" style="flex:1;">
+            <span id="bigONDisplay" style="font-weight:800; font-family:var(--font-mono); font-size:1.1rem; color:var(--accent-blue);">N = 1,000</span>
+          </div>
+
+          <div id="complexityChartBox"></div>
+        </section>
+
+        <!-- Tool 3: Data Structure Inspector -->
+        <section class="interactive-widget-box">
+          <div class="widget-header">
+            <div class="widget-title">🌳 Tool 3: Interactive Data Structure Inspector</div>
+            <span class="widget-badge">LIFO / FIFO Visualizer</span>
+          </div>
+          <p style="margin-bottom:1rem; font-size:0.9rem; color:var(--text-secondary);">Push and pop elements into a Stack (LIFO) or Queue (FIFO) to observe pointer manipulations:</p>
+
+          <div style="display:flex; gap:1rem; align-items:center; margin-bottom:1rem; flex-wrap:wrap;">
+            <select id="dsModeSelect" style="padding:0.4rem 0.8rem; background:var(--bg-surface-elevated); color:var(--text-primary); border:1px solid var(--border-color); border-radius:var(--radius-sm);">
+              <option value="stack">Stack (LIFO - Last In First Out)</option>
+              <option value="queue">Queue (FIFO - First In First Out)</option>
+            </select>
+            <input type="text" id="dsInputVal" placeholder="Enter node value (e.g. Node_X)" style="padding:0.4rem 0.8rem; background:var(--bg-surface-elevated); color:var(--text-primary); border:1px solid var(--border-color); border-radius:var(--radius-sm);">
+            <button class="btn btn-primary btn-sm" id="dsPushBtn" type="button">Push / Enqueue</button>
+            <button class="btn btn-sm" id="dsPopBtn" type="button">Pop / Dequeue</button>
+          </div>
+
+          <div id="dsVisualStack" style="padding:1rem; background:var(--code-bg); border:1px solid var(--code-border); border-radius:var(--radius-md); min-height:120px;"></div>
+        </section>
+
+        <footer class="footer">
+          <p>MS Applied Programming (Python) · Master's Curriculum Portal · Built with Python 3.13</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/site.js"></script>
+  <script src="assets/js/interactive-tools.js"></script>
+</body>
+</html>

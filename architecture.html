@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Architecture & Specifications | MS Applied Python</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body data-root="" data-page-id="architecture">
+  <div class="progress" id="readingProgress"></div>
+
+  <div class="mobile-topbar">
+    <button class="btn btn-sm" id="openSidebar">☰ Menu</button>
+    <div class="brand-text">MS Applied Python</div>
+    <button class="theme-toggle-btn btn-sm">🌓</button>
+  </div>
+
+  <div class="site-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a class="brand" href="index.html">
+          <div class="brand-mark">Py</div>
+          <div>
+            <h1>Applied Python</h1>
+            <small>MS CS Graduate Portal</small>
+          </div>
+        </a>
+      </div>
+      <div class="nav-search">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="site-search-input" id="navSearch" placeholder="Search curriculum...">
+          <span class="search-shortcut">⌘K</span>
+        </div>
+      </div>
+      <nav class="course-nav" id="courseNav"></nav>
+      <div class="sidebar-footer">
+        <button class="theme-toggle-btn" type="button">🌓 Theme</button>
+        <span style="font-size:0.75rem; color:var(--text-muted);">Python 3.13 Ready</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="page-wrap">
+        <nav class="breadcrumbs">
+          <a href="index.html">Home</a>
+          <span class="separator">/</span>
+          <span>Course Architecture & Specifications</span>
+        </nav>
+
+        <header class="hero">
+          <div class="eyebrow">Academic Architecture</div>
+          <h1>Course Architecture & Specifications</h1>
+          <p class="lead">Pedagogical design system, 19-section graduate blueprint, and CPython systems execution model.</p>
+        </header>
+
+        <article class="article">
+          <section>
+            <h2>1. Pedagogical Architecture & Graduate Principles</h2>
+            <p>The MS Applied Programming in Python curriculum is engineered to bridge foundational software syntax with enterprise systems architecture. Every module is structured around four pillars:</p>
+            <ul>
+              <li><strong>Systems Rigor:</strong> Deconstructing CPython runtime internals, memory allocations, and POSIX system call interfaces.</li>
+              <li><strong>Formal Complexity:</strong> Mathematically proving asymptotic bounds and identifying algorithmic optimizations.</li>
+              <li><strong>Defensive Engineering:</strong> Enforcing automated pytest test suites, strict typing with Mypy, and zero-defect exception handling.</li>
+              <li><strong>Real-World Applicability:</strong> Multi-step practical engineering drills reflecting modern cloud, API, and data engineering environments.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>2. 19-Section Lesson Blueprint</h2>
+            <div class="diagram">
+              <div class="mermaid">
+flowchart TD
+  S1[1. Intuition] --> S2[2. Learning Outcomes]
+  S2 --> S3[3. Prerequisites]
+  S3 --> S4[4. CPython Systems Internals]
+  S4 --> S5[5. Mermaid Architecture]
+  S5 --> S6[6. Mind Map]
+  S6 --> S7[7. Asymptotic Math Proofs]
+  S7 --> S8[8. Industry Scenarios]
+  S8 --> S9[9. Production Code]
+  S9 --> S10[10. Defensive Security]
+  S10 --> S11[11. SWE Best Practices]
+  S11 --> S12[12. Academic Citations]
+  S12 --> S13[13. Case Studies]
+  S13 --> S14[14. Anti-Patterns]
+  S14 --> S15[15. Exec Summary]
+  S15 --> S16[16. Glossary]
+  S16 --> S17[17. Quiz Engine]
+  S17 --> S18[18. 4-Step Hands-On Lab]
+  S18 --> S19[19. PEP Citations]
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2>3. Capstone Project Requirements (Week 15)</h2>
+            <p>Students must architect and defend an end-to-end applied Python software system fulfilling:</p>
+            <ol>
+              <li><strong>Object-Oriented Domain Core:</strong> Encapsulated domain entities utilizing custom dunder methods, ABC contracts, and Design Patterns.</li>
+              <li><strong>Automated Test Coverage:</strong> Comprehensive pytest suite achieving $\ge 90\%$ line and branch coverage with mock isolation.</li>
+              <li><strong>Data Persistence / Streaming:</strong> SQLite database integration via parameterized SQL/SQLAlchemy or streaming file parser.</li>
+              <li><strong>Applied Interface Component:</strong> High-throughput FastAPI REST web service or exploratory Pandas/NumPy analytics pipeline.</li>
+              <li><strong>DevOps / Packaging:</strong> Declarative <code>pyproject.toml</code> configuration and multi-stage <code>Dockerfile</code> containerization.</li>
+            </ol>
+          </section>
+        </article>
+
+        <footer class="footer">
+          <p>MS Applied Programming (Python) · Master's Curriculum Portal · Built with Python 3.13</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
